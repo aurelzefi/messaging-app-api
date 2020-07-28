@@ -10,7 +10,7 @@ use Illuminate\Validation\ValidationException;
 class TokensController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created token in storage.
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -39,13 +39,17 @@ class TokensController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified token from storage.
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
     {
+        $request->validate([
+            'device_name' => 'required',
+        ]);
+
         $request->user()->tokens()->where('name', $request->device_name)->delete();
 
         return response()->noContent();
