@@ -1,5 +1,8 @@
 <?php
 
+use App\File;
+use App\Message;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +14,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        factory(User::class, 10)->create()->each(function (User $user) {
+            $messages = [];
+
+            for ($i = 0; $i < rand(0, 5); $i++) {
+                $messages[] = factory(Message::class)->make([
+                    'sender_id' => $user,
+                    'receiver_id' => User::inRandomOrder()->first(),
+                ]);
+            }
+
+            $messages = $user->sentMessages()->saveMany($messages);
+
+            foreach ($messages as $message) {
+                $files = [];
+
+                for ($j = 0; $j < rand(0, 1); $j++) {
+                    $files[] = factory(File::class)->make([
+                        'message_id' => $message,
+                    ]);
+                }
+
+                $message->files()->saveMany($files);
+            }
+        });
     }
 }
