@@ -41,16 +41,13 @@ class TokensController extends Controller
     /**
      * Remove the specified token from storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, $id)
     {
-        $request->validate([
-            'device_name' => 'required',
-        ]);
-
-        $request->user()->tokens()->where('name', $request->device_name)->delete();
+        $request->user()->tokens()->where('id', $id)->delete();
 
         return response()->noContent();
     }
