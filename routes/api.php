@@ -22,4 +22,8 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::delete('/sanctum/token', 'TokensController@delete');
+
+    Route::resource('messages', 'MessagesController')->only('store', 'update', 'destroy');
+
+    Route::get('files/{file}', 'FilesController@show');
 });

@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\File;
+use App\Message;
+use App\User;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
@@ -30,9 +33,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         parent::boot();
+
+        Route::model('file', File::class);
+        Route::model('message', Message::class);
+        Route::model('user', User::class);
     }
 
     /**

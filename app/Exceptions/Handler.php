@@ -2,7 +2,11 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Routing\Router;
 use Illuminate\Validation\ValidationException;
 use Throwable;
 
@@ -51,7 +55,23 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        return parent::render($request, $exception);
+        if (method_exists($exception, 'render') && $response = $exception->render($request)) {
+            return Router::toResponse($request, $response);
+        } elseif ($exception instanceof Responsable) {
+            return $exception->toResponse($request);
+        }
+
+        $e = $this->prepareException($exception);
+
+        if ($e instanceof HttpResponseException) {
+            return $e->getResponse();
+        } elseif ($e instanceof AuthenticationException) {
+            return $this->unauthenticated($request, $e);
+        } elseif ($e instanceof ValidationException) {
+            return $this->convertValidationExceptionToResponse($e, $request);
+        }
+
+        return $this->prepareJsonResponse($request, $e);
     }
 
     /**
@@ -64,5 +84,13 @@ class Handler extends ExceptionHandler
         }
 
         return $this->invalidJson($request, $e);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return response()->json(['message' => $exception->getMessage()], 401);
     }
 }
