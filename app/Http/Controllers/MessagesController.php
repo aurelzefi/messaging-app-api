@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\MessageSent;
+use App\Events\MessageUnsent;
 use App\Message;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\Request;
@@ -76,6 +77,8 @@ class MessagesController extends Controller
 
         $message->delete();
         $message->files()->delete();
+
+        event(new MessageUnsent($message));
 
         return response()->noContent();
     }
