@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/register', 'RegisterController@register');
 Route::post('/sanctum/token', 'TokensController@store');
 
 Route::middleware('auth:sanctum')->group(function () {
