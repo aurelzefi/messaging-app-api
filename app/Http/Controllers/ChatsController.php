@@ -26,7 +26,7 @@ class ChatsController extends Controller
      */
     public function show(User $user)
     {
-        return Message::forAuthWithUser($user)->get();
+        return Message::with('files')->forAuthWithUser($user)->get();
     }
 
     /**
