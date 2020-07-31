@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Message extends Model
 {
@@ -41,5 +42,41 @@ class Message extends Model
     public function files()
     {
         return $this->hasMany(File::class);
+    }
+
+    /**
+     * Scope a query to only include chats for the authenticated user.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeChatsForAuth($query)
+    {
+        return $query->where(function ($query) {
+            $query->where('sender_id', auth()->id())
+                ->orWhere('receiver_id', auth()->id());
+        })
+        ->whereIn('id', Message::selectRaw('max(id) id')->groupBy(
+            DB::raw('if(sender_id > receiver_id, concat(sender_id, receiver_id), concat(receiver_id, sender_id))')
+        ));
+    }
+
+    /**
+     * Scope a query to only include chats for the authenticated user with the given user.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  \App\User  $user
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeForAuthWithUser($query, User $user)
+    {
+        return $query->where(function ($query) use ($user) {
+            $query->where('sender_id', request()->user()->id)
+                ->where('receiver_id', $user->id);
+        })
+        ->orWhere(function ($query) use ($user) {
+            $query->where('sender_id', $user->id)
+                ->where('receiver_id', request()->user()->id);
+        });
     }
 }

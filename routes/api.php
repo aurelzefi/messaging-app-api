@@ -22,9 +22,15 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
 
+    Route::get('/users', 'UsersController@index');
+
     Route::delete('/sanctum/token/{id}', 'TokensController@destroy');
 
     Route::resource('messages', 'MessagesController')->only('store', 'update', 'destroy');
 
     Route::get('files/{file}', 'FilesController@show');
+
+    Route::resource('chats', 'ChatsController')
+        ->only('index', 'show', 'update', 'destroy')
+        ->parameters(['chats' => 'user',]);
 });

@@ -55,4 +55,36 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class, 'receiver_id');
     }
+
+    /**
+     * Get the unread messages with the given user.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function unreadMessagesWithUser(User $user)
+    {
+        return $this->receivedMessages()
+                    ->where('sender_id', $user->id)
+                    ->whereNull('read_at');
+    }
+
+    /**
+     * Scope a query to only include users for the given search.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  string  $string
+     * @param  int  $take
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSearch($query, $string, $take)
+    {
+        $query->where('name', 'like', "%{$string}%")->orWhere('email', 'like', "%{$string}%");
+
+        if (filter_var($take, FILTER_VALIDATE_INT)) {
+            $query->take($take);
+        }
+
+        return $query;
+    }
 }
