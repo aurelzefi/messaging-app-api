@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         User::all()->each(function (User $user) {
             $messages = [];
 
-            for ($i = 0; $i < rand(0, 5); $i++) {
+            for ($i = 0; $i < rand(0, 10); $i++) {
                 $messages[] = factory(Message::class)->make([
                     'sender_id' => $user,
                     'receiver_id' => User::inRandomOrder()->first(),
