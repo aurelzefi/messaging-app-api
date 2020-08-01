@@ -32,5 +32,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::resource('chats', 'ChatsController')
         ->only('index', 'show', 'update', 'destroy')
-        ->parameters(['chats' => 'user',]);
+        ->parameters(['chats' => 'user']);
 });
