@@ -40,20 +40,7 @@ class MessagesController extends Controller
 
         event(new MessageSent($message));
 
-        return response()->json($message->load('files'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function update(Request $request)
-    {
-        $this->authorize('update', $request->message);
+        return $message->load('files');
     }
 
     /**
