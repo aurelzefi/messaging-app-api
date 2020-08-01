@@ -63,7 +63,6 @@ class MessagesController extends Controller
         );
 
         $message->delete();
-        $message->files()->delete();
 
         event(new MessageUnsent($message));
 
