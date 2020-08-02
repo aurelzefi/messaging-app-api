@@ -22,7 +22,7 @@ class TokensController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-            'device_name' => 'required',
+            'device_name' => 'required|string|max:255',
         ]);
 
         $user = User::where('email', $request->input('email'))->first();

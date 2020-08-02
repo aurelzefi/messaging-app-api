@@ -18,7 +18,7 @@ class AuthenticateWithQueryParameter
         $token = $request->input('api_token');
 
         if ($token) {
-            $request->headers->set('Authorization', "Bearer $token");
+            $request->headers->set('Authorization', "Bearer {$token}");
         }
 
         return $next($request);
