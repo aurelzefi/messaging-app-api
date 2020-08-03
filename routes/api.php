@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/users', 'UsersController@index');
 
-    Route::delete('/tokens/{id}', 'TokensController@destroy');
+    Route::delete('/tokens/{token}', 'TokensController@destroy');
 
     Route::resource('messages', 'MessagesController')->only('store', 'destroy');
 

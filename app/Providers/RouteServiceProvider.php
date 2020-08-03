@@ -7,6 +7,7 @@ use App\Message;
 use App\User;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -38,6 +39,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('file', File::class);
         Route::model('message', Message::class);
         Route::model('user', User::class);
+        Route::model('token', PersonalAccessToken::class);
     }
 
     /**

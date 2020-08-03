@@ -19,6 +19,6 @@ class FilePolicy
      */
     public function view(User $user, File $file)
     {
-        return $user->is($file->message->sender) || $user->is($file->message->receiver);
+        return $user->id === $file->message->sender_id || $user->id === $file->message->receiver_id;
     }
 }

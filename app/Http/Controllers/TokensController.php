@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class TokensController extends Controller
 {
@@ -41,13 +42,16 @@ class TokensController extends Controller
     /**
      * Remove the specified token from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Laravel\Sanctum\PersonalAccessToken $token
      * @return \Illuminate\Http\Response
+     *
+     * @throws \Exception
      */
-    public function destroy(Request $request, $id)
+    public function destroy(PersonalAccessToken $token)
     {
-        $request->user()->tokens()->where('id', $id)->delete();
+        $this->authorize('delete', $token);
+
+        $token->delete();
 
         return response()->noContent();
     }

@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
+use App\Policies\TokenPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+        PersonalAccessToken::class => TokenPolicy::class,
     ];
 
     /**

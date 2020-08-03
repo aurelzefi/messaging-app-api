@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Message;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Laravel\Sanctum\PersonalAccessToken;
 
-class MessagePolicy
+class TokenPolicy
 {
     use HandlesAuthorization;
 
@@ -14,11 +14,11 @@ class MessagePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Message  $message
+     * @param  \Laravel\Sanctum\PersonalAccessToken  $token
      * @return mixed
      */
-    public function delete(User $user, Message $message)
+    public function delete(User $user, PersonalAccessToken $token)
     {
-        return $user->id === $message->sender_id;
+        return $user->id === $token->tokenable_id;
     }
 }
