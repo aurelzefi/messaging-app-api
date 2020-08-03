@@ -38,9 +38,11 @@ class MessagesController extends Controller
             );
         }
 
+        $message->load('files');
+
         event(new MessageSent($message));
 
-        return $message->load('files');
+        return $message;
     }
 
     /**
