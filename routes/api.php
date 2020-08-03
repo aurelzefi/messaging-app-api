@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/register', 'RegisterController@register');
-Route::post('/sanctum/token', 'TokensController@store');
+Route::post('/tokens', 'TokensController@store');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/users', 'UsersController@index');
 
-    Route::delete('/sanctum/token/{id}', 'TokensController@destroy');
+    Route::delete('/tokens/{id}', 'TokensController@destroy');
 
     Route::resource('messages', 'MessagesController')->only('store', 'destroy');
 
