@@ -22,7 +22,7 @@ class MessagesController extends Controller
             'receiver_id' => 'required|exists:users,id',
             'content' => 'required_without:files|nullable|string',
             'files' => 'array',
-            'files.*' => 'file|max:5120',
+            'files.*' => 'image|max:5120',
         ]);
 
         $message = $request->user()->sentMessages()->create([
