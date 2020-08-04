@@ -64,9 +64,9 @@ class MessagesController extends Controller
             })->toArray()
         );
 
-        $message->delete();
-
         event(new MessageUnsent($message));
+
+        $message->delete();
 
         return response()->noContent();
     }

@@ -65,6 +65,7 @@ class Message extends Model
                     $query->whereColumn('sender_id', 'messages.sender_id')
                         ->orWhereColumn('sender_id', 'messages.receiver_id');
                 })
+                ->whereNull('read_at')
         ]);
     }
 
