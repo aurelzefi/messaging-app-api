@@ -53,12 +53,19 @@ class Message extends Model
     public function scopeChatsForAuth($query)
     {
         return $query->where(function ($query) {
-            $query->where('sender_id', auth()->id())
-                ->orWhere('receiver_id', auth()->id());
+            $query->where('sender_id', auth()->id())->orWhere('receiver_id', auth()->id());
         })
         ->whereIn('id', Message::selectRaw('max(id) id')->groupBy(
             DB::raw('if(sender_id > receiver_id, concat(sender_id, receiver_id), concat(receiver_id, sender_id))')
-        ));
+        ))->addSelect([
+            'unread_count' => Message::selectRaw('count(*) count')
+                ->from('messages', 'unread_messages')
+                ->where('receiver_id', auth()->id())
+                ->where(function ($query) {
+                    $query->whereColumn('sender_id', 'messages.sender_id')
+                        ->orWhereColumn('sender_id', 'messages.receiver_id');
+                })
+        ]);
     }
 
     /**
@@ -71,12 +78,10 @@ class Message extends Model
     public function scopeForAuthWithUser($query, User $user)
     {
         return $query->where(function ($query) use ($user) {
-            $query->where('sender_id', request()->user()->id)
-                ->where('receiver_id', $user->id);
+            $query->where('sender_id', auth()->id())->where('receiver_id', $user->id);
         })
         ->orWhere(function ($query) use ($user) {
-            $query->where('sender_id', $user->id)
-                ->where('receiver_id', request()->user()->id);
+            $query->where('sender_id', $user->id)->where('receiver_id', auth()->id());
         });
     }
 }
