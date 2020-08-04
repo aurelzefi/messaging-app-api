@@ -31,7 +31,7 @@ class MessagesController extends Controller
         ]);
 
         if ($request->hasFile('files')) {
-            return $message->files()->createMany(
+            $message->files()->createMany(
                 collect($request->file('files'))->map(function ($file) {
                     return ['name' => $file->store('files')];
                 })->toArray()
