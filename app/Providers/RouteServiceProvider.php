@@ -36,6 +36,12 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::boot();
 
+        Route::bind('chat', function ($chatId) {
+            $id = collect(explode('.', $chatId))->reject(auth()->id())->first();
+
+            return User::findOrFail($id);
+        });
+
         Route::model('file', File::class);
         Route::model('message', Message::class);
         Route::model('user', User::class);
