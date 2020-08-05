@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Events\MessageSent;
 use App\Events\MessageUnsent;
 use App\Message;
-use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MessagesController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created message in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -46,23 +46,18 @@ class MessagesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified message from storage.
      *
-     * @param  \Illuminate\Contracts\Filesystem\Filesystem  $files
      * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      *
      * @throws \Exception
      */
-    public function destroy(Filesystem $files, Message $message)
+    public function destroy(Message $message)
     {
         $this->authorize('delete', $message);
 
-        $files->delete(
-            $message->files->map(function ($file) {
-                return "files/{$file->name}";
-            })->toArray()
-        );
+        Storage::delete($message->files->pluck('name')->toArray());
 
         event(new MessageUnsent($message));
 
