@@ -38,7 +38,7 @@ class MessagesController extends Controller
             );
         }
 
-        $message->load('sender', 'files');
+        $message = $message->fresh('sender', 'receiver', 'files');
 
         event(new MessageSent($message));
 
