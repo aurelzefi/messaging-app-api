@@ -15,6 +15,13 @@ class Message extends Model
     protected $guarded = [];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['chat_id'];
+
+    /**
      * Get the sender for the message.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -42,6 +49,16 @@ class Message extends Model
     public function files()
     {
         return $this->hasMany(File::class);
+    }
+
+    /**
+     * Get the chat ID attribute.
+     *
+     * @return string
+     */
+    public function getChatIdAttribute()
+    {
+        return collect([$this->attributes['sender_id'], $this->attributes['receiver_id']])->sort()->implode('.');
     }
 
     /**
