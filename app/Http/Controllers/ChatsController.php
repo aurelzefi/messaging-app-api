@@ -15,7 +15,7 @@ class ChatsController extends Controller
      */
     public function index()
     {
-        return Message::with('sender', 'receiver')->chatsForAuth()->latest()->get();
+        return Message::with('sender', 'receiver', 'files')->chatsForAuth()->latest()->get();
     }
 
     /**
