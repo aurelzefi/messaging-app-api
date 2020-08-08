@@ -73,13 +73,17 @@ class User extends Authenticatable
      * Scope a query to only include users for the given search.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  string  $string
+     * @param  string  $value
      * @param  int  $take
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeSearch($query, $string, $take)
+    public function scopeSearch($query, $value, $take)
     {
-        $query->where('name', 'like', "%{$string}%")->orWhere('email', 'like', "%{$string}%");
+        $query->where(function ($query) use ($value) {
+            $query->where('name', 'like', "%{$value}%")
+                ->orWhere('email', 'like', "%{$value}%");
+        })
+        ->whereKeyNot(auth()->id());
 
         if (filter_var($take, FILTER_VALIDATE_INT)) {
             $query->take($take);
