@@ -13,7 +13,7 @@ class TokensController extends Controller
     /**
      * Store a newly created token in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      *
      * @throws \Illuminate\Validation\ValidationException
@@ -42,7 +42,7 @@ class TokensController extends Controller
     /**
      * Remove the specified token from storage.
      *
-     * @param \Laravel\Sanctum\PersonalAccessToken $token
+     * @param  \Laravel\Sanctum\PersonalAccessToken  $token
      * @return \Illuminate\Http\Response
      *
      * @throws \Exception

@@ -7,6 +7,7 @@ use App\Events\MessageUnsent;
 use App\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class MessagesController extends Controller
 {
@@ -19,10 +20,10 @@ class MessagesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'receiver_id' => 'required|exists:users,id',
-            'content' => 'required_without:files|nullable|string',
-            'files' => 'array',
-            'files.*' => 'image|max:5120',
+            'receiver_id' => ['required', Rule::exists('users', 'id')->whereNot('id', $request->user()->id)],
+            'content' => ['required_without:files', 'nullable', 'string'],
+            'files' => ['array'],
+            'files.*' => ['image', 'max:5120'],
         ]);
 
         $message = $request->user()->sentMessages()->create([
