@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ChatDeleted;
+use App\Events\MessageUnsent;
 use App\Message;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ChatsController extends Controller
 {
@@ -26,7 +29,7 @@ class ChatsController extends Controller
      */
     public function show(User $user)
     {
-        return Message::with('files')->forAuthWithUser($user)->get();
+        return Message::with('sender', 'receiver', 'files')->forAuthWithUser($user)->get();
     }
 
     /**
@@ -51,7 +54,15 @@ class ChatsController extends Controller
      */
     public function destroy(User $user)
     {
+        $messages = Message::with('files')->forAuthWithUser($user)->get();
+
+        $messages->each(function ($message) {
+            Storage::delete($message->files->pluck('name')->toArray());
+        });
+
         Message::forAuthWithUser($user)->delete();
+
+        event(new ChatDeleted($user));
 
         return response()->noContent();
     }

@@ -57,9 +57,9 @@ class MessagesController extends Controller
     {
         $this->authorize('delete', $message);
 
-        Storage::delete($message->files->pluck('name')->toArray());
-
         event(new MessageUnsent($message));
+
+        Storage::delete($message->files->pluck('name')->toArray());
 
         $message->delete();
 

@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-class MessageSent extends MessageEvent
+class MessageRead extends MessageEvent
 {
     //
 }
