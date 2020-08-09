@@ -22,7 +22,7 @@ class PictureController extends Controller
         Storage::disk('public')->delete($request->user()->picture);
 
         $request->user()->fill([
-            'avatar' => $request->file('picture')->store('pictures', 'public'),
+            'picture' => $request->file('picture')->store('pictures', 'public'),
         ])->save();
 
         return $request->user();

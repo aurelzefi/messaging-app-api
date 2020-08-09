@@ -59,7 +59,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => [
                 'required', 'string', 'email', 'max:255',
-                Rule::unique('email')->ignore($request->user()->email)
+                Rule::unique('users', 'email')->ignore($request->user())
             ],
         ]);
 

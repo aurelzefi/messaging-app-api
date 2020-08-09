@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/user', 'UserController@destroy');
 
     Route::put('/user/password', 'PasswordController');
-    Route::put('/user/picture', 'PictureController');
+    Route::post('/user/picture', 'PictureController');
 
     Route::get('/users', 'UsersController@index');
     Route::get('files/{file}', 'FilesController@show');
