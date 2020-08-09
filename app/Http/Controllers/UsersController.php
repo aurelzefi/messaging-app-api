@@ -17,4 +17,15 @@ class UsersController extends Controller
     {
         return User::search($request->input('query'), $request->input('take'))->get();
     }
+
+    /**
+     * Display the specified user.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $user)
+    {
+        return $user;
+    }
 }

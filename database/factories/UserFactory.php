@@ -4,6 +4,7 @@
 
 use App\User;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /*
@@ -18,6 +19,10 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    if(! Storage::disk('public')->exists('picture')) {
+        Storage::disk('public')->makeDirectory('pictures');
+    }
+
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,

@@ -24,11 +24,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/user/password', 'PasswordController');
     Route::post('/user/picture', 'PictureController');
 
-    Route::get('/users', 'UsersController@index');
     Route::get('files/{file}', 'FilesController@show');
 
     Route::delete('/tokens/{token}', 'TokensController@destroy');
 
+    Route::resource('users', 'UsersController')->only('index', 'show');
     Route::resource('messages', 'MessagesController')->only('store', 'destroy');
     Route::resource('chats', 'ChatsController')->only('index', 'show', 'update', 'destroy');
 });

@@ -2,6 +2,7 @@
 
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,10 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+Artisan::command('delete-files', function () {
+    Storage::deleteDirectory('files');
+    Storage::disk('public')->deleteDirectory('pictures');
+
+    $this->comment('All files were deleted.');
+})->describe('Delete all the files in storage');
