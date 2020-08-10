@@ -7,6 +7,7 @@ use App\Events\MessageUnsent;
 use App\Message;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ChatsController extends Controller
@@ -43,7 +44,7 @@ class ChatsController extends Controller
     {
         $request->user()->unreadMessagesWithUser($user)->update(['read_at' => now()]);
 
-        return Message::forAuthWithUser($user)->get();
+        return Message::with('sender', 'receiver', 'files')->forAuthWithUser($user)->get();
     }
 
     /**
@@ -54,7 +55,7 @@ class ChatsController extends Controller
      */
     public function destroy(User $user)
     {
-        $messages = Message::with('files')->forAuthWithUser($user)->get();
+        $messages = Message::forAuthWithUser($user)->get();
 
         $messages->each(function ($message) {
             Storage::delete($message->files->pluck('name')->toArray());

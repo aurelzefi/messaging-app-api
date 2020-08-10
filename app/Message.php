@@ -73,15 +73,24 @@ class Message extends Model
             $query->where('sender_id', auth()->id())->orWhere('receiver_id', auth()->id());
         })
         ->whereIn('id', Message::selectRaw('max(id) id')->groupBy(
-            DB::raw('if(sender_id > receiver_id, concat(sender_id, receiver_id), concat(receiver_id, sender_id))')
+            DB::raw(
+                'case when sender_id > receiver_id
+                    then concat(sender_id, receiver_id)
+                    else concat(receiver_id, sender_id)
+                end'
+            )
         ))->addSelect([
             'unread_count' => Message::selectRaw('count(*) count')
                 ->from('messages', 'unread_messages')
                 ->where('receiver_id', auth()->id())
-                ->where(function ($query) {
-                    $query->whereColumn('sender_id', 'messages.sender_id')
-                        ->orWhereColumn('sender_id', 'messages.receiver_id');
-                })
+                ->whereRaw(
+                    sprintf(
+                        'case when messages.sender_id = %s
+                            then sender_id = messages.receiver_id
+                            else sender_id = messages.sender_id
+                        end',
+                        auth()->id()
+                    ))
                 ->whereNull('read_at')
         ]);
     }

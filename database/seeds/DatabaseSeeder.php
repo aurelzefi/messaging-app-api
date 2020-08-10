@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             for ($i = 0; $i < rand(5, 50); $i++) {
                 $messages[] = factory(Message::class)->make([
                     'sender_id' => $user,
-                    'receiver_id' => User::inRandomOrder()->first(),
+                    'receiver_id' => User::whereKeyNot($user->id)->inRandomOrder()->first(),
                 ]);
             }
 
