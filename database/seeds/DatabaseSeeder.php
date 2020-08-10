@@ -4,15 +4,17 @@ use App\File;
 use App\Message;
 use App\User;
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 
 class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
      *
+     * @param  \Faker\Generator  $faker
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
         factory(User::class)->create([
             'name' => 'Aurel Zefi',
@@ -26,17 +28,24 @@ class DatabaseSeeder extends Seeder
 
         factory(User::class, 10)->create();
 
-        User::all()->each(function (User $user) {
+        User::all()->each(function (User $sender) use ($faker) {
             $messages = [];
 
             for ($i = 0; $i < rand(5, 50); $i++) {
+                $receiver = User::whereKeyNot($sender->id)->inRandomOrder()->first();
+                $latest = $sender->created_at->diffInSeconds() ? $sender : $receiver;
+                $createdAt = $faker->dateTimeBetween($latest->created_at);
+
                 $messages[] = factory(Message::class)->make([
-                    'sender_id' => $user,
-                    'receiver_id' => User::whereKeyNot($user->id)->inRandomOrder()->first(),
+                    'sender_id' => $sender,
+                    'receiver_id' => $receiver,
+                    'created_at' => $createdAt,
+                    'updated_at' => $createdAt,
+                    'read_at' => $faker->randomElement([null, $faker->dateTimeInInterval($createdAt)])
                 ]);
             }
 
-            $messages = $user->sentMessages()->saveMany($messages);
+            $messages = $sender->sentMessages()->saveMany($messages);
 
             foreach ($messages as $message) {
                 $files = [];
@@ -44,6 +53,8 @@ class DatabaseSeeder extends Seeder
                 for ($j = 0; $j < rand(0, 3); $j++) {
                     $files[] = factory(File::class)->make([
                         'message_id' => $message,
+                        'created_at' => $message->created_at,
+                        'updated_at' => $message->updated_at,
                     ]);
                 }
 
