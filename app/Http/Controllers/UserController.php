@@ -37,7 +37,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display the authenticated resource.
+     * Display the authenticated user.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response

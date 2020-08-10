@@ -79,18 +79,30 @@ class Message extends Model
                     else concat(receiver_id, sender_id)
                 end'
             )
-        ))->addSelect([
+        ))->withUnreadCount();
+    }
+
+    /**
+     * Scope a query to include the unread count for the chats.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWithUnreadCount($query)
+    {
+        return $query->addSelect([
             'unread_count' => Message::selectRaw('count(*) count')
                 ->from('messages', 'unread_messages')
                 ->where('receiver_id', auth()->id())
                 ->whereRaw(
                     sprintf(
                         'case when messages.sender_id = %s
-                            then sender_id = messages.receiver_id
-                            else sender_id = messages.sender_id
-                        end',
+                                then sender_id = messages.receiver_id
+                                else sender_id = messages.sender_id
+                            end',
                         auth()->id()
-                    ))
+                    )
+                )
                 ->whereNull('read_at')
         ]);
     }

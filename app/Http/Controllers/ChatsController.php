@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Events\ChatDeleted;
-use App\Events\MessageUnsent;
+use App\Events\MessageRead;
 use App\Message;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ChatsController extends Controller
@@ -42,7 +41,16 @@ class ChatsController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $messages = $request->user()
+                        ->unreadMessagesWithUser($user)
+                        ->with('sender', 'receiver', 'files')
+                        ->get();
+
         $request->user()->unreadMessagesWithUser($user)->update(['read_at' => now()]);
+
+        $messages->each(function ($message) {
+            event(new MessageRead($message));
+        });
 
         return Message::with('sender', 'receiver', 'files')->forAuthWithUser($user)->get();
     }
