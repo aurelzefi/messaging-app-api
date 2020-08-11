@@ -87,6 +87,8 @@ class UserController extends Controller
             Storage::delete($message->files->pluck('name')->toArray());
         });
 
+        Storage::disk('public')->delete($request->user()->picture);
+
         $request->user()->delete();
         $request->user()->tokens()->delete();
 
