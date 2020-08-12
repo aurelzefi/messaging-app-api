@@ -3,8 +3,8 @@
 use App\File;
 use App\Message;
 use App\User;
-use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
