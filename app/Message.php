@@ -97,9 +97,9 @@ class Message extends Model
                 ->whereRaw(
                     sprintf(
                         'case when messages.sender_id = %s
-                                then sender_id = messages.receiver_id
-                                else sender_id = messages.sender_id
-                            end',
+                            then sender_id = messages.receiver_id
+                            else sender_id = messages.sender_id
+                        end',
                         auth()->id()
                     )
                 )
