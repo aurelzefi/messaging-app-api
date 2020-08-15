@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(User::class, function (Faker $faker) {
-    if(! Storage::disk('public')->exists('picture')) {
+    if(! Storage::disk('public')->exists('pictures')) {
         Storage::disk('public')->makeDirectory('pictures');
     }
 
