@@ -88,7 +88,7 @@ print_r(json_decode((string) $body));
 
 ```bash
 curl -X GET \
-    -G "http://messaging-app-api.test/api/chats/delectus" \
+    -G "http://messaging-app-api.test/api/chats/sed" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -H "Authorization: Bearer {token}"
@@ -96,7 +96,7 @@ curl -X GET \
 
 ```javascript
 const url = new URL(
-    "http://messaging-app-api.test/api/chats/delectus"
+    "http://messaging-app-api.test/api/chats/sed"
 );
 
 let headers = {
@@ -117,7 +117,7 @@ fetch(url, {
 
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
-    'http://messaging-app-api.test/api/chats/delectus',
+    'http://messaging-app-api.test/api/chats/sed',
     [
         'headers' => [
             'Content-Type' => 'application/json',
@@ -150,7 +150,7 @@ Parameter | Status | Description
 
 ```bash
 curl -X PUT \
-    "http://messaging-app-api.test/api/chats/quia" \
+    "http://messaging-app-api.test/api/chats/esse" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -H "Authorization: Bearer {token}"
@@ -158,7 +158,7 @@ curl -X PUT \
 
 ```javascript
 const url = new URL(
-    "http://messaging-app-api.test/api/chats/quia"
+    "http://messaging-app-api.test/api/chats/esse"
 );
 
 let headers = {
@@ -179,7 +179,7 @@ fetch(url, {
 
 $client = new \GuzzleHttp\Client();
 $response = $client->put(
-    'http://messaging-app-api.test/api/chats/quia',
+    'http://messaging-app-api.test/api/chats/esse',
     [
         'headers' => [
             'Content-Type' => 'application/json',
@@ -214,7 +214,7 @@ Parameter | Status | Description
 
 ```bash
 curl -X DELETE \
-    "http://messaging-app-api.test/api/chats/officia" \
+    "http://messaging-app-api.test/api/chats/voluptatem" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -H "Authorization: Bearer {token}"
@@ -222,7 +222,7 @@ curl -X DELETE \
 
 ```javascript
 const url = new URL(
-    "http://messaging-app-api.test/api/chats/officia"
+    "http://messaging-app-api.test/api/chats/voluptatem"
 );
 
 let headers = {
@@ -243,7 +243,7 @@ fetch(url, {
 
 $client = new \GuzzleHttp\Client();
 $response = $client->delete(
-    'http://messaging-app-api.test/api/chats/officia',
+    'http://messaging-app-api.test/api/chats/voluptatem',
     [
         'headers' => [
             'Content-Type' => 'application/json',
@@ -279,7 +279,7 @@ Parameter | Status | Description
 
 ```bash
 curl -X GET \
-    -G "http://messaging-app-api.test/api/files/dolor" \
+    -G "http://messaging-app-api.test/api/files/ab" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -H "Authorization: Bearer {token}"
@@ -287,7 +287,7 @@ curl -X GET \
 
 ```javascript
 const url = new URL(
-    "http://messaging-app-api.test/api/files/dolor"
+    "http://messaging-app-api.test/api/files/ab"
 );
 
 let headers = {
@@ -308,7 +308,7 @@ fetch(url, {
 
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
-    'http://messaging-app-api.test/api/files/dolor',
+    'http://messaging-app-api.test/api/files/ab',
     [
         'headers' => [
             'Content-Type' => 'application/json',
@@ -348,7 +348,7 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -H "Authorization: Bearer {token}" \
-    -d '{"receiver_id":3,"content":"omnis","files":[]}'
+    -d '{"receiver_id":3,"content":"deleniti","files":[]}'
 
 ```
 
@@ -365,7 +365,7 @@ let headers = {
 
 let body = {
     "receiver_id": 3,
-    "content": "omnis",
+    "content": "deleniti",
     "files": []
 }
 
@@ -391,7 +391,7 @@ $response = $client->post(
         ],
         'json' => [
             'receiver_id' => 3,
-            'content' => 'omnis',
+            'content' => 'deleniti',
             'files' => [],
         ],
     ]
@@ -426,7 +426,7 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X DELETE \
-    "http://messaging-app-api.test/api/messages/occaecati" \
+    "http://messaging-app-api.test/api/messages/veritatis" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -H "Authorization: Bearer {token}"
@@ -434,7 +434,7 @@ curl -X DELETE \
 
 ```javascript
 const url = new URL(
-    "http://messaging-app-api.test/api/messages/occaecati"
+    "http://messaging-app-api.test/api/messages/veritatis"
 );
 
 let headers = {
@@ -455,7 +455,7 @@ fetch(url, {
 
 $client = new \GuzzleHttp\Client();
 $response = $client->delete(
-    'http://messaging-app-api.test/api/messages/occaecati',
+    'http://messaging-app-api.test/api/messages/veritatis',
     [
         'headers' => [
             'Content-Type' => 'application/json',
@@ -495,7 +495,7 @@ curl -X PUT \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -H "Authorization: Bearer {token}" \
-    -d '{"password":"earum","new_password":"esse"}'
+    -d '{"password":"eos","new_password":"accusantium"}'
 
 ```
 
@@ -511,8 +511,8 @@ let headers = {
 };
 
 let body = {
-    "password": "earum",
-    "new_password": "esse"
+    "password": "eos",
+    "new_password": "accusantium"
 }
 
 fetch(url, {
@@ -536,8 +536,8 @@ $response = $client->put(
             'Authorization' => 'Bearer {token}',
         ],
         'json' => [
-            'password' => 'earum',
-            'new_password' => 'esse',
+            'password' => 'eos',
+            'new_password' => 'accusantium',
         ],
     ]
 );
@@ -572,7 +572,7 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -H "Authorization: Bearer {token}" \
-    -d '{"picture":"quis"}'
+    -d '{"picture":"perferendis"}'
 
 ```
 
@@ -588,7 +588,7 @@ let headers = {
 };
 
 let body = {
-    "picture": "quis"
+    "picture": "perferendis"
 }
 
 fetch(url, {
@@ -612,7 +612,7 @@ $response = $client->post(
             'Authorization' => 'Bearer {token}',
         ],
         'json' => [
-            'picture' => 'quis',
+            'picture' => 'perferendis',
         ],
     ]
 );
@@ -642,7 +642,7 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X DELETE \
-    "http://messaging-app-api.test/api/tokens/sunt" \
+    "http://messaging-app-api.test/api/tokens/et" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -H "Authorization: Bearer {token}"
@@ -650,7 +650,7 @@ curl -X DELETE \
 
 ```javascript
 const url = new URL(
-    "http://messaging-app-api.test/api/tokens/sunt"
+    "http://messaging-app-api.test/api/tokens/et"
 );
 
 let headers = {
@@ -671,7 +671,7 @@ fetch(url, {
 
 $client = new \GuzzleHttp\Client();
 $response = $client->delete(
-    'http://messaging-app-api.test/api/tokens/sunt',
+    'http://messaging-app-api.test/api/tokens/et',
     [
         'headers' => [
             'Content-Type' => 'application/json',
@@ -707,7 +707,7 @@ curl -X POST \
     "http://messaging-app-api.test/api/tokens" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"email":"consequatur","password":"perspiciatis","device_name":"error"}'
+    -d '{"email":"impedit","password":"eum","device_name":"aperiam"}'
 
 ```
 
@@ -722,9 +722,9 @@ let headers = {
 };
 
 let body = {
-    "email": "consequatur",
-    "password": "perspiciatis",
-    "device_name": "error"
+    "email": "impedit",
+    "password": "eum",
+    "device_name": "aperiam"
 }
 
 fetch(url, {
@@ -747,9 +747,9 @@ $response = $client->post(
             'Accept' => 'application/json',
         ],
         'json' => [
-            'email' => 'consequatur',
-            'password' => 'perspiciatis',
-            'device_name' => 'error',
+            'email' => 'impedit',
+            'password' => 'eum',
+            'device_name' => 'aperiam',
         ],
     ]
 );
@@ -842,7 +842,7 @@ curl -X PUT \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -H "Authorization: Bearer {token}" \
-    -d '{"name":"dolor","email":"rem"}'
+    -d '{"name":"quaerat","email":"laborum"}'
 
 ```
 
@@ -858,8 +858,8 @@ let headers = {
 };
 
 let body = {
-    "name": "dolor",
-    "email": "rem"
+    "name": "quaerat",
+    "email": "laborum"
 }
 
 fetch(url, {
@@ -883,8 +883,8 @@ $response = $client->put(
             'Authorization' => 'Bearer {token}',
         ],
         'json' => [
-            'name' => 'dolor',
-            'email' => 'rem',
+            'name' => 'quaerat',
+            'email' => 'laborum',
         ],
     ]
 );
@@ -900,7 +900,7 @@ print_r(json_decode((string) $body));
 #### Body Parameters
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
-    `name` | string |  required  | 
+    `name` | string |  required  | The name for the user.
         `email` | string |  required  | The email for the user.
     
 <!-- END_00f7d0be1226887c1ffa251c97c8740a -->
@@ -972,7 +972,7 @@ curl -X POST \
     "http://messaging-app-api.test/api/user" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"name":"magnam","email":"vel","password":"veritatis","device_name":"voluptatem"}'
+    -d '{"name":"cumque","email":"omnis","password":"eligendi","device_name":"quae"}'
 
 ```
 
@@ -987,10 +987,10 @@ let headers = {
 };
 
 let body = {
-    "name": "magnam",
-    "email": "vel",
-    "password": "veritatis",
-    "device_name": "voluptatem"
+    "name": "cumque",
+    "email": "omnis",
+    "password": "eligendi",
+    "device_name": "quae"
 }
 
 fetch(url, {
@@ -1013,10 +1013,10 @@ $response = $client->post(
             'Accept' => 'application/json',
         ],
         'json' => [
-            'name' => 'magnam',
-            'email' => 'vel',
-            'password' => 'veritatis',
-            'device_name' => 'voluptatem',
+            'name' => 'cumque',
+            'email' => 'omnis',
+            'password' => 'eligendi',
+            'device_name' => 'quae',
         ],
     ]
 );
@@ -1032,7 +1032,7 @@ print_r(json_decode((string) $body));
 #### Body Parameters
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
-    `name` | string |  required  | 
+    `name` | string |  required  | The name for the user.
         `email` | string |  required  | The email for the user.
         `password` | string |  required  | The password for the user.
         `device_name` | string |  required  | The device name for the user's device.
@@ -1049,7 +1049,7 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X GET \
-    -G "http://messaging-app-api.test/api/users?query=libero&take=5" \
+    -G "http://messaging-app-api.test/api/users?query=veniam&take=3" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -H "Authorization: Bearer {token}"
@@ -1061,8 +1061,8 @@ const url = new URL(
 );
 
 let params = {
-    "query": "libero",
-    "take": "5",
+    "query": "veniam",
+    "take": "3",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -1093,8 +1093,8 @@ $response = $client->get(
             'Authorization' => 'Bearer {token}',
         ],
         'query' => [
-            'query'=> 'libero',
-            'take'=> '5',
+            'query'=> 'veniam',
+            'take'=> '3',
         ],
     ]
 );
@@ -1123,7 +1123,7 @@ Parameter | Status | Description
 
 ```bash
 curl -X GET \
-    -G "http://messaging-app-api.test/api/users/ut" \
+    -G "http://messaging-app-api.test/api/users/et" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -H "Authorization: Bearer {token}"
@@ -1131,7 +1131,7 @@ curl -X GET \
 
 ```javascript
 const url = new URL(
-    "http://messaging-app-api.test/api/users/ut"
+    "http://messaging-app-api.test/api/users/et"
 );
 
 let headers = {
@@ -1152,7 +1152,7 @@ fetch(url, {
 
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
-    'http://messaging-app-api.test/api/users/ut',
+    'http://messaging-app-api.test/api/users/et',
     [
         'headers' => [
             'Content-Type' => 'application/json',

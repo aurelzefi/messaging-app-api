@@ -17,7 +17,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      *
      * @group User
-     * @bodyParam name string required
+     * @bodyParam name string required The name for the user.
      * @bodyParam email string required The email for the user.
      * @bodyParam password string required The password for the user.
      * @bodyParam device_name string required The device name for the user's device.
@@ -62,7 +62,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      *
      * @group User
-     * @bodyParam name string required
+     * @bodyParam name string required The name for the user.
      * @bodyParam email string required The email for the user.
      */
     public function update(Request $request)
