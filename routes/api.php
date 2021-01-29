@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/user', 'UserController@store');
-Route::post('/tokens', 'TokensController@store');
+Route::post('/user', 'UserController@store')->name('user.store');
+Route::post('/tokens', 'TokensController@store')->name('tokens.store');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', 'UserController@show');
