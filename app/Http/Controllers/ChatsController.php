@@ -15,6 +15,8 @@ class ChatsController extends Controller
      * Display the chats.
      *
      * @return \Illuminate\Http\Response
+     *
+     * @group Chats
      */
     public function index()
     {
@@ -26,6 +28,9 @@ class ChatsController extends Controller
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
+     *
+     * @group Chats
+     * @urlParam chat required The ID of the chat between the two users.
      */
     public function show(User $user)
     {
@@ -33,11 +38,14 @@ class ChatsController extends Controller
     }
 
     /**
-     * Update the chat with the specified user in storage.
+     * Update the chat with the specified user.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
+     *
+     * @group Chats
+     * @urlParam chat required The ID of the chat between the two users.
      */
     public function update(Request $request, User $user)
     {
@@ -56,10 +64,13 @@ class ChatsController extends Controller
     }
 
     /**
-     * Remove the chat with the specified user from storage.
+     * Remove the chat with the specified user.
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
+     *
+     * @group Chats
+     * @urlParam chat required The ID of the chat between the two users.
      */
     public function destroy(User $user)
     {

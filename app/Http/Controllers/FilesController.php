@@ -13,6 +13,9 @@ class FilesController extends Controller
      * @return \Illuminate\Http\Response
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @group Files
+     * @urlParam file required The file ID.
      */
     public function show(File $file)
     {

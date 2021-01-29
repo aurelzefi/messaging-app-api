@@ -12,6 +12,10 @@ class UsersController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
+     * @group Users
+     * @queryParam query string The query string to search the users.
+     * @queryParam take integer The number of users that should be retrieved.
      */
     public function index(Request $request)
     {
@@ -23,6 +27,9 @@ class UsersController extends Controller
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
+     *
+     * @group Users
+     * @urlParam user required The user ID.
      */
     public function show(User $user)
     {

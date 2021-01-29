@@ -9,12 +9,16 @@ use Illuminate\Validation\ValidationException;
 class PasswordController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Update the password for the authenticated user.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
 
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @group Password
+     * @bodyParam password string required The current password for the authenticated user.
+     * @bodyParam new_password string required The new password for the authenticated user.
      */
     public function __invoke(Request $request)
     {

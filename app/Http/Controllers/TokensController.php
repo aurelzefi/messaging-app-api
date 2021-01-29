@@ -11,12 +11,17 @@ use Laravel\Sanctum\PersonalAccessToken;
 class TokensController extends Controller
 {
     /**
-     * Store a newly created token in storage.
+     * Store a newly created token.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      *
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @group Tokens
+     * @bodyParam email string required The email for the user.
+     * @bodyParam password string required The password for the user.
+     * @bodyParam device_name string required The device name for the user's device.
      */
     public function store(Request $request)
     {
@@ -40,12 +45,15 @@ class TokensController extends Controller
     }
 
     /**
-     * Remove the specified token from storage.
+     * Remove the specified token.
      *
      * @param  \Laravel\Sanctum\PersonalAccessToken  $token
      * @return \Illuminate\Http\Response
      *
      * @throws \Exception
+     *
+     * @group Tokens
+     * @urlParam token required The token ID.
      */
     public function destroy(PersonalAccessToken $token)
     {

@@ -12,10 +12,16 @@ use Illuminate\Validation\Rule;
 class MessagesController extends Controller
 {
     /**
-     * Store a newly created message in storage.
+     * Store a newly created message.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
+     * @group Messages
+     * @urlParam message required The message ID.
+     * @bodyParam receiver_id integer The receiver of the message.
+     * @bodyParam content string The content of the message.
+     * @bodyParam files array An array of images that should be stored for the message.
      */
     public function store(Request $request)
     {
@@ -47,12 +53,15 @@ class MessagesController extends Controller
     }
 
     /**
-     * Remove the specified message from storage.
+     * Remove the specified message.
      *
      * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      *
      * @throws \Exception
+     *
+     * @group Messages
+     * @urlParam message required The message ID.
      */
     public function destroy(Message $message)
     {

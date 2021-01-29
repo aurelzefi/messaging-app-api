@@ -8,10 +8,13 @@ use Illuminate\Support\Facades\Storage;
 class PictureController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Update the profile picture for the authenticated user.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
+     * @group Picture
+     * @bodyParam picture file required The profile picture for the authenticated user.
      */
     public function __invoke(Request $request)
     {

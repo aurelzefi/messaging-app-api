@@ -11,10 +11,16 @@ use Illuminate\Validation\Rule;
 class UserController extends Controller
 {
     /**
-     * Store a newly created user in storage.
+     * Store a newly created user.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
+     * @group User
+     * @bodyParam name string required
+     * @bodyParam email string required The email for the user.
+     * @bodyParam password string required The password for the user.
+     * @bodyParam device_name string required The device name for the user's device.
      */
     public function store(Request $request)
     {
@@ -41,6 +47,8 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
+     * @group User
      */
     public function show(Request $request)
     {
@@ -48,10 +56,14 @@ class UserController extends Controller
     }
 
     /**
-     * Update the authenticated user in storage.
+     * Update the authenticated user.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
+     * @group User
+     * @bodyParam name string required
+     * @bodyParam email string required The email for the user.
      */
     public function update(Request $request)
     {
@@ -72,10 +84,12 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the authenticated resource from storage.
+     * Remove the authenticated user.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
+     * @group User
      */
     public function destroy(Request $request)
     {
