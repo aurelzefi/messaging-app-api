@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "aurelzefi/messaging-app-api",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "The API for a messaging app.",
     "keywords": [
         "framework",
         "laravel"
