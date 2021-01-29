@@ -14,8 +14,8 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      *
      * @group Users
-     * @queryParam query string The query string to search the users.
-     * @queryParam take integer The number of users that should be retrieved.
+     * @queryParam query The query string to search the users.
+     * @queryParam take The number of users that should be retrieved.
      */
     public function index(Request $request)
     {
