@@ -18,7 +18,6 @@ class MessagesController extends Controller
      * @return \Illuminate\Http\Response
      *
      * @group Messages
-     * @urlParam message required The message ID.
      * @bodyParam receiver_id integer The receiver of the message.
      * @bodyParam content string The content of the message.
      * @bodyParam files array An array of images that should be stored for the message.
