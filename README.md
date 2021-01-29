@@ -1,5 +1,7 @@
 # Messaging App API
 
+The API for a messaging app.
+
 ## Setup
 
 Run the following artisan commands:
@@ -9,11 +11,11 @@ php artisan storage:link
 php artisan migrate --seed
 ```
 
-Set `BROADCAST_DRIVER=pusher` in the `.env` file. 
-
-Also set the values for the pusher configuration:
+Change the broadcasting configuration for pusher:
 
 ```dotenv
+BROADCAST_DRIVER=pusher
+
 PUSHER_APP_ID=test-app
 PUSHER_APP_KEY=key
 PUSHER_APP_SECRET=secret
