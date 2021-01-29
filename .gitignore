@@ -3,6 +3,8 @@
 /public/hot
 /public/storage
 /public/docs
+/resources/docs
+/resources/views/apidoc
 /storage/*.key
 /vendor
 .env
