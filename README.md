@@ -4,14 +4,18 @@ The API for a messaging app.
 
 ## Setup
 
-Run the following artisan commands:
+Run the following commands:
 ```
+composer install
+
+cp .env.example .env
+
 php artisan key:generate
 php artisan storage:link
 php artisan migrate --seed
 ```
 
-Change the broadcasting configuration for pusher:
+Change the broadcasting configuration for pusher, the values don't matter as long as they match in the client application:
 
 ```dotenv
 BROADCAST_DRIVER=pusher
@@ -28,4 +32,4 @@ php artisan websockets:serve
 
 ## Demo
 
-A video demo of this application can be viewed [here]().
+A video demo of this application can be found [here]().
