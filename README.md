@@ -15,8 +15,9 @@ php artisan storage:link
 php artisan migrate --seed
 ```
 
-Change the broadcasting configuration for pusher, the values don't matter as long as they match in the client application:
+### Configure broadcasting
 
+Change the broadcasting configuration for pusher, the values don't matter as long as they match in the client application:
 ```dotenv
 BROADCAST_DRIVER=pusher
 
@@ -25,10 +26,17 @@ PUSHER_APP_KEY=key
 PUSHER_APP_SECRET=secret
 ```
 
-Next, start the websockets server:
+### Start the websockets server
 ```
 php artisan websockets:serve
 ```
+
+### Generate API documentation
+```
+php artisan apidoc:generate
+```
+
+The documentation can now be accessed under ```/docs```.
 
 ## Demo
 
