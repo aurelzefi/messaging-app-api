@@ -37,7 +37,3 @@ php artisan apidoc:generate
 ```
 
 The documentation can now be accessed under ```/docs```.
-
-## Demo
-
-A video demo of this application can be found [here](https://drive.google.com/file/d/1G0NZVWJtFT6yWCDJDBD2DmPkLSnx-JvA/view?usp=sharing).
